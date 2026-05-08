@@ -6,9 +6,11 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.centroweg.biblioteca_jpql.model.Livro;
+import com.centroweg.biblioteca_jpql.projection.LivroMinimoProjection;
 
 @Repository
 public interface LivroRepository extends JpaRepository<Livro, Long>{
@@ -24,6 +26,8 @@ public interface LivroRepository extends JpaRepository<Livro, Long>{
     List<Livro> findByIsbnIsNull();
     
     List<Livro> findByCategoriaIn(String categoria);
+
+    List<LivroMinimoProjection> findByCategoria(String categoria);
     
     List<Livro> findByEditoraIdOrderByTituloAsc(Long editoraId);
 
@@ -89,4 +93,12 @@ public interface LivroRepository extends JpaRepository<Livro, Long>{
     """, nativeQuery = true)
     List<Livro> findByCategoriaLower(String categoria);
 
+    @Query(value = """
+        SELECT l.titulo AS titulo, l.preco AS preco
+        FROM livro l
+        WHERE EXTRACT(YEAR FROM l.data_publicacao) = :ano
+    """, nativeQuery = true)
+    List<LivroMinimoProjection> findLivrosMinimosNativoByAno(@Param("ano") Integer ano);
+
+    <T> List<T> findByTituloContaining(String titulo, Class<T> type);
 }
