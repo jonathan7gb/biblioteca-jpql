@@ -6,4 +6,5 @@ import com.centroweg.biblioteca_jpql.model.Editora;
 
 public interface EditoraRepository extends JpaRepository<Editora, Long> {
 
+    Editora findByLivrosId(Long livroId);
 }
