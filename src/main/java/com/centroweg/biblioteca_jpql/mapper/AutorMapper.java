@@ -1,10 +1,13 @@
 package com.centroweg.biblioteca_jpql.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.centroweg.biblioteca_jpql.dto.autor.AutorItemResponseDTO;
 import com.centroweg.biblioteca_jpql.dto.autor.AutorRequestDTO;
 import com.centroweg.biblioteca_jpql.dto.autor.AutorResponseDTO;
 import com.centroweg.biblioteca_jpql.model.Autor;
 
+@Component
 public class AutorMapper {
 
     private LivroMapper livroMapper;

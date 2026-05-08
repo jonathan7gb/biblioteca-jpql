@@ -2,6 +2,8 @@ package com.centroweg.biblioteca_jpql.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.centroweg.biblioteca_jpql.dto.autor.AutorRequestDTO;
 import com.centroweg.biblioteca_jpql.dto.autor.AutorResponseDTO;
 import com.centroweg.biblioteca_jpql.dto.livro.LivroItemResponseDTO;
@@ -12,6 +14,7 @@ import com.centroweg.biblioteca_jpql.model.Livro;
 import com.centroweg.biblioteca_jpql.repository.AutorRepository;
 import com.centroweg.biblioteca_jpql.repository.LivroRepository;
 
+@Service
 public class AutorService {
 
     private final AutorRepository repository;
@@ -49,8 +52,8 @@ public class AutorService {
         .toList();
     }
 
-    public List<LivroItemResponseDTO> obterTodosLivrosPorAutorId(Long autoresId) {
-       List<Livro> livros = livroRepository.findAllByAutoresId(autoresId);
+    public List<LivroItemResponseDTO> obterTodosLivrosPorAutorId(Long autorId) {
+       List<Livro> livros = livroRepository.findAllByAutoresId(autorId);
        return livros.stream()
         .map(livro -> livroMapper.toItemDto(livro))
         .toList();

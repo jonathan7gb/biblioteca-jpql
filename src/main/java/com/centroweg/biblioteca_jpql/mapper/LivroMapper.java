@@ -1,9 +1,12 @@
 package com.centroweg.biblioteca_jpql.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.centroweg.biblioteca_jpql.dto.livro.LivroItemResponseDTO;
 import com.centroweg.biblioteca_jpql.dto.livro.LivroResponseDTO;
 import com.centroweg.biblioteca_jpql.model.Livro;
 
+@Component
 public class LivroMapper {
 
     private AutorMapper autorMapper;

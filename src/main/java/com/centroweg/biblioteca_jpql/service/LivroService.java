@@ -2,6 +2,8 @@ package com.centroweg.biblioteca_jpql.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.centroweg.biblioteca_jpql.dto.autor.AutorResponseDTO;
 import com.centroweg.biblioteca_jpql.dto.livro.LivroRequestDTO;
 import com.centroweg.biblioteca_jpql.dto.livro.LivroResponseDTO;
@@ -13,6 +15,7 @@ import com.centroweg.biblioteca_jpql.repository.AutorRepository;
 import com.centroweg.biblioteca_jpql.repository.EditoraRepository;
 import com.centroweg.biblioteca_jpql.repository.LivroRepository;
 
+@Service
 public class LivroService {
 
     private final LivroRepository repository;

@@ -2,11 +2,14 @@ package com.centroweg.biblioteca_jpql.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.centroweg.biblioteca_jpql.dto.editora.EditoraRequestDTO;
 import com.centroweg.biblioteca_jpql.dto.editora.EditoraResponseDTO;
 import com.centroweg.biblioteca_jpql.mapper.EditoraMapper;
 import com.centroweg.biblioteca_jpql.repository.EditoraRepository;
 
+@Service
 public class EditoraService {
 
     private final EditoraRepository repository;
