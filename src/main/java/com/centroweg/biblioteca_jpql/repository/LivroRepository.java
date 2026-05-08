@@ -66,10 +66,27 @@ public interface LivroRepository extends JpaRepository<Livro, Long>{
     """)
     List<Livro> findLivrosAcimaDaMediaGeral();
 
-    @Query("""
+    @Query(value = """
         select id, titulo, isbn, preco, dataPublicacao, categoria
         from livro l
         where EXTRACT(YEAR FROM l.dataPublicacao) = 2023
-    """)
+    """, nativeQuery = true)
     List<Livro> findByDataPublicacao2023();
+
+    @Query(value = """
+        select id, titulo, isbn, preco, dataPublicacao, categoria
+        from livro l
+        join livro_autores la on l.id = la.livro_id
+        join autor a on la.autores_id = a.id
+        where a.nacionalidade = :nacionalidade
+    """, nativeQuery = true)
+    List<Livro> findLivrosByNacionalidadeAutorNativo(String nacionalidade);
+
+    @Query(value = """
+        select id, titulo, isbn, preco, dataPublicacao, categoria
+        from livro l
+        where lower(l.categoria) = lower(:categoria)
+    """, nativeQuery = true)
+    List<Livro> findByCategoriaLower(String categoria);
+
 }
