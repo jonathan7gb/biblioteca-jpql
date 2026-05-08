@@ -43,7 +43,7 @@ public class AutorService {
        List<Autor> autores = repository.findAll();
 
        for(Autor autor: autores){
-        List<Livro> livros = livroRepository.findAllByAutoresId(autor.getId());
+        List<Livro> livros = livroRepository.findByAutoresId(autor.getId());
         autor.setLivros(livros);
        }
 
@@ -53,7 +53,7 @@ public class AutorService {
     }
 
     public List<LivroItemResponseDTO> obterTodosLivrosPorAutorId(Long autorId) {
-       List<Livro> livros = livroRepository.findAllByAutoresId(autorId);
+       List<Livro> livros = livroRepository.findByAutoresId(autorId);
        return livros.stream()
         .map(livro -> livroMapper.toItemDto(livro))
         .toList();
