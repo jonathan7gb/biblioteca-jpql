@@ -1,5 +1,6 @@
 package com.centroweg.biblioteca_jpql.mapper;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.centroweg.biblioteca_jpql.dto.livro.LivroItemResponseDTO;
@@ -9,8 +10,13 @@ import com.centroweg.biblioteca_jpql.model.Livro;
 @Component
 public class LivroMapper {
 
-    private AutorMapper autorMapper;
-    private EditoraMapper editoraMapper;
+    private final AutorMapper autorMapper;
+    private final EditoraMapper editoraMapper;
+
+    public LivroMapper(@Lazy AutorMapper autorMapper, @Lazy EditoraMapper editoraMapper) {
+        this.autorMapper = autorMapper;
+        this.editoraMapper = editoraMapper;
+    }
 
     public Livro toEntity(com.centroweg.biblioteca_jpql.dto.livro.LivroRequestDTO dto) {
         return new Livro(
@@ -22,6 +28,10 @@ public class LivroMapper {
     }
 
     public LivroResponseDTO toDto(Livro livro) {
+        if (livro == null) {
+            return null;
+        }
+
         return new LivroResponseDTO(
                 livro.getId(),
                 livro.getTitulo(),
@@ -36,6 +46,10 @@ public class LivroMapper {
     }
 
     public LivroItemResponseDTO toItemDto(Livro livro) {
+        if (livro == null) {
+            return null;
+        }
+        
         return new LivroItemResponseDTO(
                 livro.getTitulo(),
                 livro.getIsbn(),

@@ -17,7 +17,6 @@ public record LivroRequestDTO(
     @NotNull(message = "O ISBN do livro não pode ser nulo")
     String isbn,
 
-    @NotBlank(message = "O preço do livro é obrigatório")
     @NotNull(message = "O preço do livro não pode ser nulo")
     @Min(value = 0, message = "O preço do livro deve ser um valor positivo")
     BigDecimal preco,

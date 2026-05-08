@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.centroweg.biblioteca_jpql.dto.autor.AutorRequestDTO;
 import com.centroweg.biblioteca_jpql.dto.autor.AutorResponseDTO;
 import com.centroweg.biblioteca_jpql.dto.livro.LivroItemResponseDTO;
-import com.centroweg.biblioteca_jpql.dto.livro.LivroResponseDTO;
 import com.centroweg.biblioteca_jpql.service.AutorService;
 
 import jakarta.validation.Valid;
