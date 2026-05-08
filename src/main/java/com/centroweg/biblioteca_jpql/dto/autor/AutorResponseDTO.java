@@ -1,5 +1,16 @@
 package com.centroweg.biblioteca_jpql.dto.autor;
 
-public record AutorResponseDTO() {
+import java.time.LocalDateTime;
+import java.util.List;
+
+import com.centroweg.biblioteca_jpql.dto.livro.LivroItemResponseDTO;
+
+public record AutorResponseDTO(
+    Long id,
+    String nome,
+    String nacionalidade,
+    LocalDateTime dataNascimento,
+    List<LivroItemResponseDTO> livros
+) {
 
 }
