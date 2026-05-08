@@ -2,6 +2,7 @@ package com.centroweg.biblioteca_jpql.repository;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -38,8 +39,30 @@ public interface LivroRepository extends JpaRepository<Livro, Long>{
     @Query("""
         SELECT l 
         FROM Livro l
-        JOIN FETCH l.autores a
+        JOIN l.autores a
         WHERE a.nome = :nomeAutor
     """)
     List<Livro> findLivrosByAutorNome(String nomeAutor);
+
+    @Query("""
+        SELECT l 
+        FROM Livro l 
+        JOIN FETCH l.autores 
+        WHERE l.id = :id
+    """)
+    Optional<Livro> findByIdWithAutores(Long id);
+
+    @Query("""
+        select avg(l.preco)
+        from Livro l
+        where l.editora.id = :editoraId
+    """)
+    Double findMediaPrecoByEditora(Long editoraId);
+
+        @Query("""
+        select l
+        from Livro l
+        where l.preco > (select avg(l2.preco) from Livro l2)
+    """)
+    Double findLivrosAcimaDaMediaGeral();
 }
