@@ -70,4 +70,28 @@ public class LivroService {
         }
         repository.deleteById(id);
     }
+
+    public LivroResponseDTO alocarLivroAEditora(Long livroId, Long editoraId) {
+        var livro = repository.findById(livroId)
+        .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
+
+        var editora = editoraRepository.findById(editoraId)
+                .orElseThrow(() -> new RuntimeException("Editora não encontrada"));
+
+        livro.setEditora(editora);
+
+        return mapper.toDto(repository.save(livro));
+    }
+
+    public LivroResponseDTO alocarLivroAAutor(Long livroId, Long autorId) {
+        var livro = repository.findById(livroId)
+        .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
+
+        var autor = autorRepository.findById(autorId)
+                .orElseThrow(() -> new RuntimeException("Autor não encontrado"));
+
+        livro.getAutores().add(autor);
+
+        return mapper.toDto(repository.save(livro));
+    }
 }

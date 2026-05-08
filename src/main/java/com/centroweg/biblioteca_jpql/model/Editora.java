@@ -1,5 +1,6 @@
 package com.centroweg.biblioteca_jpql.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -26,7 +27,7 @@ public class Editora {
     private String nome;
 
     @OneToMany(mappedBy = "editora")
-    private List<Livro> livros;
+    private List<Livro> livros = new ArrayList<>();
 
     public Editora(String nome) {
         this.nome = nome;

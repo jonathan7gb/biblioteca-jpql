@@ -1,5 +1,7 @@
 package com.centroweg.biblioteca_jpql.mapper;
 
+import java.util.Collections;
+
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -40,16 +42,17 @@ public class LivroMapper {
                 livro.getDataPublicacao(),
                 livro.getCategoria(),
                 editoraMapper.toItemDto(livro.getEditora()),
+                livro.getAutores() == null ? Collections.emptyList() : 
                 livro.getAutores().stream()
-                        .map(autor -> autorMapper.toItemDto(autor))
-                        .toList());
+                    .map(autor -> autorMapper.toItemDto(autor))
+                    .toList());
     }
 
     public LivroItemResponseDTO toItemDto(Livro livro) {
         if (livro == null) {
             return null;
         }
-        
+
         return new LivroItemResponseDTO(
                 livro.getTitulo(),
                 livro.getIsbn(),

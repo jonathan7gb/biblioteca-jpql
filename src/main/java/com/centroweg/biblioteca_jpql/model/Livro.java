@@ -2,6 +2,7 @@ package com.centroweg.biblioteca_jpql.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -35,7 +36,7 @@ public class Livro {
 
     @ManyToMany
     @JoinTable(name = "livro_autores")
-    private List<Autor> autores;
+    private List<Autor> autores = new ArrayList<>();
 
     public Livro(String titulo, String isbn, LocalDate dataPublicacao, BigDecimal preco, String categoria) {
         this.titulo = titulo;

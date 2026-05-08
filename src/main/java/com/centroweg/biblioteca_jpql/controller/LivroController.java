@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,5 +57,14 @@ public class LivroController {
         service.deletarLivro(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Livro deletado com sucesso");
     }
+    
+    @PutMapping("/{livroId}/alocar-editora/{editoraId}")
+    public ResponseEntity<LivroResponseDTO> alocarEditora(@PathVariable Long livroId, @PathVariable Long editoraId) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.alocarLivroAEditora(livroId, editoraId));
+    }
 
+     @PutMapping("/{livroId}/alocar-autor/{autorId}")
+    public ResponseEntity<LivroResponseDTO> alocarAutor(@PathVariable Long livroId, @PathVariable Long autorId) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.alocarLivroAAutor(livroId, autorId));
+    }
 }
