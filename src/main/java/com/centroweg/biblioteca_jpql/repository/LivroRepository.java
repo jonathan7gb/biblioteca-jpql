@@ -59,10 +59,17 @@ public interface LivroRepository extends JpaRepository<Livro, Long>{
     """)
     Double findMediaPrecoByEditora(Long editoraId);
 
-        @Query("""
+    @Query("""
         select l
         from Livro l
         where l.preco > (select avg(l2.preco) from Livro l2)
     """)
-    Double findLivrosAcimaDaMediaGeral();
+    List<Livro> findLivrosAcimaDaMediaGeral();
+
+    @Query("""
+        select id, titulo, isbn, preco, dataPublicacao, categoria
+        from livro l
+        where EXTRACT(YEAR FROM l.dataPublicacao) = 2023
+    """)
+    List<Livro> findByDataPublicacao2023();
 }
