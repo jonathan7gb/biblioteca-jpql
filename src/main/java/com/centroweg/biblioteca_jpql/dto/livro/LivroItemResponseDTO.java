@@ -7,8 +7,8 @@ import java.time.LocalDate;
 public record LivroItemResponseDTO(
     String titulo,
     String isbn,
-    BigDecimal preco,
     LocalDate dataPublicacao,
+    BigDecimal preco,
     String categoria
 ) {
 

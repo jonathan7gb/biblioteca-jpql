@@ -1,7 +1,6 @@
 package com.centroweg.biblioteca_jpql.dto.autor;
 
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -17,7 +16,7 @@ public record AutorRequestDTO(
 
     @Past(message = "A data de nascimento deve ser no passado")
     @NotNull(message = "A data de nascimento do autor não pode ser nula")
-    LocalDateTime dataNascimento
+    LocalDate dataNascimento
 ) {
 
 }

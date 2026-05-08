@@ -1,6 +1,6 @@
 package com.centroweg.biblioteca_jpql.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,10 +17,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "autor")
 public class Autor {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String nacionalidade;
-    private LocalDateTime dataNascimento;
-}
+    private LocalDate dataNascimento;
 
+    public Autor(String nome, String nacionalidade, LocalDate dataNascimento) {
+        this.nome = nome;
+        this.nacionalidade = nacionalidade;
+        this.dataNascimento = dataNascimento;
+    }
+}

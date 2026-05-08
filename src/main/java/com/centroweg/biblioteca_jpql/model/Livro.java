@@ -36,5 +36,13 @@ public class Livro {
     @ManyToMany
     @JoinTable(name = "livro_autores")
     private List<Autor> autores;
+
+    public Livro(String titulo, String isbn, LocalDate dataPublicacao, BigDecimal preco, String categoria) {
+        this.titulo = titulo;
+        this.isbn = isbn;
+        this.dataPublicacao = dataPublicacao;
+        this.preco = preco;
+        this.categoria = categoria;
+    }
 }
 
