@@ -6,7 +6,6 @@ import com.centroweg.biblioteca_jpql.dto.autor.AutorResponseDTO;
 import com.centroweg.biblioteca_jpql.dto.livro.LivroRequestDTO;
 import com.centroweg.biblioteca_jpql.dto.livro.LivroResponseDTO;
 import com.centroweg.biblioteca_jpql.mapper.AutorMapper;
-import com.centroweg.biblioteca_jpql.mapper.EditoraMapper;
 import com.centroweg.biblioteca_jpql.mapper.LivroMapper;
 import com.centroweg.biblioteca_jpql.model.Autor;
 import com.centroweg.biblioteca_jpql.model.Livro;
@@ -60,5 +59,12 @@ public class LivroService {
         return autores.stream()
         .map(autor -> autorMapper.toDto(autor))
         .toList();
+    }
+
+    public void deletarLivro(Long id){
+        if(!repository.existsById(id)){
+            throw new RuntimeException("Livro não encontrado");
+        }
+        repository.deleteById(id);
     }
 }
